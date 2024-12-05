@@ -12,6 +12,6 @@ entries:
     name: unifi-network-application
     type: application
     urls:
-    - https://adamhurm.github.io/unifi-network-application/unifi-network-application-0.1.1.tgz
+    - https://github.com/adamhurm/unifi-network-application/releases/download/0.1.1/unifi-network-application-0.1.1.tgz
     version: 0.1.1
 generated: "2024-12-05T00:09:01.8131447-05:00"
