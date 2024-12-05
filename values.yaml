@@ -58,6 +58,12 @@ volumeMounts: []
 mongodb:
   # Environment variables to set for the mongodb container
   env: []
+  # - name: PUID
+  #   value: "911"
+  # - name: PGID
+  #   value: "911"
+  # - name: TZ  
+  #   value: "Europe/Budapest"
   # Image to pull and use. For Arm64 (Raspberry Pi 4 for example), use "arm64v8/mongo"
   image: "mongo"
   imageTag: "3.6"

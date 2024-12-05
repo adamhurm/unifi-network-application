@@ -30,9 +30,12 @@ spec:
           args: ["--wiredTigerCacheSizeGB", "{{ .Values.mongodb.cacheSizeGB }}"]
 
           env:
-            {{- with .Values.mongodb.env }}
-            {{- toYaml . | nindent 12 }}
-            {{- end }}
+            - name: PUID
+              value: {{ .Values.mongodb.env.puid | default "911" }}
+            - name: PGID
+              value: {{ .Values.mongodb.env.pgid | default "911" }}
+            - name: TZ
+              value: {{ .Values.mongodb.env.tz | default "Europe/Budapest" }}
             - name: MONGO_INITDB_ROOT_USERNAME
               {{- if .Values.mongodb.adminSecret }}
               valueFrom:
@@ -109,9 +112,12 @@ spec:
         - name: {{ include "template.fullname" . }}-app
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           env:
-            {{- with .Values.mongodb.env }}
-            {{- toYaml . | nindent 12 }}
-            {{- end }}
+            - name: PUID
+              value: {{ .Values.mongodb.env.puid | default "911" }}
+            - name: PGID
+              value: {{ .Values.mongodb.env.pgid | default "911" }}
+            - name: TZ
+              value: {{ .Values.mongodb.env.tz | default "Europe/Budapest" }}
             - name: MEM_LIMIT
               value: "1024"
             - name: MEM_STARTUP
