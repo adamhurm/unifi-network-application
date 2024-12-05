@@ -12,7 +12,7 @@ entries:
     name: unifi-network-application
     type: application
     urls:
-    - https://adamhurm.github.io/unifi-network-application/unifi-network-application-0.1.2.tgz
+    - https://github.com/adamhurm/unifi-network-application/releases/download/0.1.2/unifi-network-application-0.1.2.tgz
     version: 0.1.2
   - apiVersion: v2
     appVersion: 8.3.32-ls54
