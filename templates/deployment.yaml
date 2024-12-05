@@ -36,7 +36,7 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.mongodb.adminSecret }}
                   key: "username"
-              {{ - else }}
+              {{- else }}
               value: {{ .Values.mongodb.adminuser }}
               {{- end }}
             - name: MONGO_INITDB_ROOT_PASSWORD
@@ -54,7 +54,7 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.mongodb.userSecret }}
                   key: "username"
-              {{ - else }}
+              {{- else }}
               value: {{ .Values.mongodb.username }}
               {{- end }}
             - name: MONGO_PASS
@@ -63,7 +63,7 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.mongodb.userSecret }}
                   key: "password"
-              {{ - else }}
+              {{- else }}
               value: {{ .Values.mongodb.password }}
               {{- end }}
 
@@ -122,7 +122,7 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.mongodb.userSecret }}
                   key: "username"
-              {{ - else }}
+              {{- else }}
               value: {{ .Values.mongodb.username }}
               {{- end }}
             - name: MONGO_PASS
@@ -131,7 +131,7 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.mongodb.userSecret }}
                   key: "password"
-              {{ - else }}
+              {{- else }}
               value: {{ .Values.mongodb.password }}
               {{- end }}
             - name: MONGO_DBNAME
