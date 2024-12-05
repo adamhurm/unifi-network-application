@@ -20,8 +20,10 @@ A Helm chart for Kubernetes
 | image.tag | string | `""` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.hostname | string | `"unifi.local"` |  |
+| ingress.ingressClassName | string | `nil` |  |
 | ingress.redirect.annotations | object | `{}` |  |
 | ingress.redirect.enabled | bool | `true` |  |
+| ingress.tls | list | `[]` |  |
 | mongodb.adminpassword | string | `""` |  |
 | mongodb.adminuser | string | `""` |  |
 | mongodb.cacheSizeGB | string | `"0.25"` |  |
