@@ -25,6 +25,7 @@ A Helm chart for Kubernetes
 | ingress.redirect.enabled | bool | `true` |  |
 | ingress.tls | list | `[]` |  |
 | mongodb.adminpassword | string | `""` |  |
+| mongodb.adminSecret | string | `nil` | Overrides `mongodb.adminuser`, `mongodb.adminpassword` |
 | mongodb.adminuser | string | `""` |  |
 | mongodb.cacheSizeGB | string | `"0.25"` |  |
 | mongodb.dbname | string | `"unifi"` |  |
@@ -33,6 +34,7 @@ A Helm chart for Kubernetes
 | mongodb.imageTag | string | `"3.6"` |  |
 | mongodb.password | string | `""` |  |
 | mongodb.username | string | `""` |  |
+| mongodb.userSecret | string | `nil` | Overrides `mongodb.username`, `mongodb.password` |
 | mongodb.volumeMounts | list | `[]` |  |
 | mongodb.volumes | list | `[]` |  |
 | nameOverride | string | `""` |  |

@@ -31,9 +31,41 @@ spec:
 
           env:
             - name: MONGO_INITDB_ROOT_USERNAME
+              {{- if .Values.mongodb.adminSecret }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mongodb.adminSecret }}
+                  key: "username"
+              {{ - else }}
               value: {{ .Values.mongodb.adminuser }}
+              {{- end }}
             - name: MONGO_INITDB_ROOT_PASSWORD
+              {{- if .Values.mongodb.adminSecret }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mongodb.adminSecret }}
+                  key: "password"
+              {{- else }}
               value: {{ .Values.mongodb.adminpassword }}
+              {{- end }}
+            - name: MONGO_USER
+              {{- if .Values.mongodb.userSecret }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mongodb.userSecret }}
+                  key: "username"
+              {{ - else }}
+              value: {{ .Values.mongodb.username }}
+              {{- end }}
+            - name: MONGO_PASS
+              {{- if .Values.mongodb.userSecret }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mongodb.userSecret }}
+                  key: "password"
+              {{ - else }}
+              value: {{ .Values.mongodb.password }}
+              {{- end }}
 
           ports:
             - name: 'mongo'
@@ -85,9 +117,23 @@ spec:
             - name: MONGO_PORT
               value: "27017"
             - name: MONGO_USER
+              {{- if .Values.mongodb.userSecret }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mongodb.userSecret }}
+                  key: "username"
+              {{ - else }}
               value: {{ .Values.mongodb.username }}
+              {{- end }}
             - name: MONGO_PASS
+              {{- if .Values.mongodb.userSecret }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mongodb.userSecret }}
+                  key: "password"
+              {{ - else }}
               value: {{ .Values.mongodb.password }}
+              {{- end }}
             - name: MONGO_DBNAME
               value: {{ .Values.mongodb.dbname }}
 

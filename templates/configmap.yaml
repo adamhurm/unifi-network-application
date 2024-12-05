@@ -6,16 +6,16 @@ metadata:
 data:
   init-mongo.js: |
     db.getSiblingDB("{{ .Values.mongodb.dbname }}").createUser({
-      user: "{{ .Values.mongodb.username }}",
-      pwd: "{{ .Values.mongodb.password}}",
+      user: process.env.MONGO_USER,
+      pwd: process.env.MONGO_PASS,
       roles: [
        {role: "dbOwner", db: "{{ .Values.mongodb.dbname}}"},
        {role: "dbOwner", db: "{{ .Values.mongodb.dbname_stat}}"},
        {role: "readWrite", db: "{{ .Values.mongodb.dbname }}"}
     ]});
     db.getSiblingDB("{{ .Values.mongodb.dbname_stat}}").createUser({
-      user: "{{ .Values.mongodb.username }}",
-      pwd: "{{ .Values.mongodb.password}}",
+      user: process.env.MONGO_USER,
+      pwd: process.env.MONGO_PASS,
       roles: [
         {role: "dbOwner", db: "{{ .Values.mongodb.dbname_stat}}"},
         {role: "readWrite", db: "{{ .Values.mongodb.dbname_stat}}"}
