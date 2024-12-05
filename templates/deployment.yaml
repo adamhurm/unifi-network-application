@@ -30,6 +30,9 @@ spec:
           args: ["--wiredTigerCacheSizeGB", "{{ .Values.mongodb.cacheSizeGB }}"]
 
           env:
+            {{- if .Values.mongodb.env }}
+            {{- toYaml .Values.mongodb.env | nindent 12 }}
+            {{- end }}
             - name: MONGO_INITDB_ROOT_USERNAME
               {{- if .Values.mongodb.adminSecret }}
               valueFrom:
