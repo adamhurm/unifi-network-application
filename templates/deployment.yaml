@@ -16,6 +16,13 @@ spec:
       labels:
         name: {{ include "template.fullname" . }}-mongodb
     spec:
+      {{- with .Values.mongodb.securityContext}}
+      securityContext:
+        runAsUser: {{ .runAsUser }}
+        runAsGroup: {{ .runAsGroup }}
+        fsGroup: {{ .fsGroup }}
+      {{- end }}
+
       volumes:
         - name: {{ include "template.fullname" . }}-mongodb-init-volume
           configMap:
@@ -28,13 +35,6 @@ spec:
         - name: mongodb
           image: "{{ .Values.mongodb.image }}:{{ .Values.mongodb.imageTag }}"
           args: ["--wiredTigerCacheSizeGB", "{{ .Values.mongodb.cacheSizeGB }}"]
-          {{- if and (.Values.mongodb.runAsUser) (.Values.mongodb.runAsGroup) }}
-          securityContext:
-            runAsUser: {{ .Values.mongodb.runAsUser }}
-            runAsGroup: {{ .Values.mongodb.runAsGroup }}
-            fsGroup: {{ .Values.mongodb.fsGroup }}
-          {{- end }}
-          env:
             - name: MONGO_INITDB_ROOT_USERNAME
               {{- if .Values.mongodb.adminSecret }}
               valueFrom:
