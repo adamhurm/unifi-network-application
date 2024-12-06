@@ -111,12 +111,9 @@ spec:
         - name: {{ include "template.fullname" . }}-app
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           env:
-            - name: PUID
-              value: {{ .Values.mongodb.env.puid | default "911" }}
-            - name: PGID
-              value: {{ .Values.mongodb.env.pgid | default "911" }}
-            - name: TZ
-              value: {{ .Values.mongodb.env.tz | default "Europe/Budapest" }}
+            {{- with .Values.mongodb.env }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
             - name: MEM_LIMIT
               value: "1024"
             - name: MEM_STARTUP
