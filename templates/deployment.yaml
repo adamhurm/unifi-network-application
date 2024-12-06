@@ -35,6 +35,7 @@ spec:
         - name: mongodb
           image: "{{ .Values.mongodb.image }}:{{ .Values.mongodb.imageTag }}"
           args: ["--wiredTigerCacheSizeGB", "{{ .Values.mongodb.cacheSizeGB }}"]
+          env:
             - name: MONGO_INITDB_ROOT_USERNAME
               {{- if .Values.mongodb.adminSecret }}
               valueFrom:
