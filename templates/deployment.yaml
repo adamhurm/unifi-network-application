@@ -28,14 +28,13 @@ spec:
         - name: mongodb
           image: "{{ .Values.mongodb.image }}:{{ .Values.mongodb.imageTag }}"
           args: ["--wiredTigerCacheSizeGB", "{{ .Values.mongodb.cacheSizeGB }}"]
-
+          {{- if and (.Values.mongodb.runAsUser) (.Values.mongodb.runAsGroup) }}
+          securityContext:
+            runAsUser: {{ .Values.mongodb.runAsUser }}
+            runAsGroup: {{ .Values.mongodb.runAsGroup }}
+            fsGroup: {{ .Values.mongodb.fsGroup }}
+          {{- end }}
           env:
-            - name: PUID
-              value: {{ .Values.mongodb.env.puid | default "911" }}
-            - name: PGID
-              value: {{ .Values.mongodb.env.pgid | default "911" }}
-            - name: TZ
-              value: {{ .Values.mongodb.env.tz | default "Europe/Budapest" }}
             - name: MONGO_INITDB_ROOT_USERNAME
               {{- if .Values.mongodb.adminSecret }}
               valueFrom:

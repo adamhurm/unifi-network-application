@@ -56,6 +56,10 @@ volumeMounts: []
 
 # Settings related to the embedded MongoDB instance
 mongodb:
+  # Set both runAsUser and runAsGroup to enable
+  runAsUser: 1001
+  runAsGroup: 1001
+  fsGroup: 1001
   # Environment variables to set for the mongodb container
   env: []
   # - name: PUID
