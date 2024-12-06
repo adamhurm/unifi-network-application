@@ -5,22 +5,25 @@ metadata:
   name: {{ include "template.fullname" . }}-mongodb-init-js
 data:
   init-mongo.js: |
-    db.getSiblingDB("admin").auth(
-      process.env.MONGO_INITDB_ROOT_USERNAME,
-      process.env.MONGO_INITDB_ROOT_PASSWORD
+    db = db.getSiblingDB("admin");
+    db.auth(
+      process.env.MONGO_INITDB_ROOT_USER,
+      process.env.MONGO_INITDB_ROOT_PASS
     );
-    db.getSiblingDB("{{ .Values.mongodb.dbname }}").createUser({
+    db = db.getSiblingDB("unifi");
+    db.createUser({
       user: process.env.MONGO_USER,
       pwd: process.env.MONGO_PASS,
       roles: [
-       {role: "dbOwner", db: "{{ .Values.mongodb.dbname}}"},
-       {role: "dbOwner", db: "{{ .Values.mongodb.dbname_stat}}"},
-       {role: "readWrite", db: "{{ .Values.mongodb.dbname }}"}
+       {role: "dbOwner", db: "unifi"},
+       {role: "dbOwner", db: "unifi_stat"},
+       {role: "readWrite", db: "unifi"}
     ]});
-    db.getSiblingDB("{{ .Values.mongodb.dbname_stat}}").createUser({
+    db.getSiblingDB("unifi_stat");
+    db.createUser({
       user: process.env.MONGO_USER,
       pwd: process.env.MONGO_PASS,
       roles: [
-        {role: "dbOwner", db: "{{ .Values.mongodb.dbname_stat}}"},
-        {role: "readWrite", db: "{{ .Values.mongodb.dbname_stat}}"}
+        {role: "dbOwner", db: "unifi_stat"},
+        {role: "readWrite", db: "unifi_stat"}
     ]});
