@@ -16,7 +16,7 @@ spec:
       labels:
         name: {{ include "template.fullname" . }}-mongodb
     spec:
-      {{- with .Values.mongodb.securityContext}}
+      {{- with .Values.mongodb.securityContext }}
       securityContext:
         runAsUser: {{ .runAsUser }}
         runAsGroup: {{ .runAsGroup }}
@@ -80,7 +80,7 @@ spec:
 
           volumeMounts:
             - name: {{ include "template.fullname" . }}-mongodb-init-volume
-              mountPath: /docker-entrypoint-initdb.d/init-mongo.js
+              mountPath: /docker-entrypoint-initdb.d
           {{- with .Values.mongodb.volumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
