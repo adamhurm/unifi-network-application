@@ -5,6 +5,10 @@ metadata:
   name: {{ include "template.fullname" . }}-mongodb-init-js
 data:
   init-mongo.js: |
+    db.getSiblingDB("{{ .Values.mongodb.dbname }}").auth(
+      process.env.MONGO_INITDB_ROOT_USERNAME,
+      process.env.MONGO_INITDB_ROOT_PASSWORD
+    );
     db.getSiblingDB("{{ .Values.mongodb.dbname }}").createUser({
       user: process.env.MONGO_USER,
       pwd: process.env.MONGO_PASS,
