@@ -5,7 +5,7 @@ metadata:
   name: {{ include "template.fullname" . }}-mongodb-init-js
 data:
   init-mongo.js: |
-    db.getSiblingDB("{{ .Values.mongodb.dbname }}").auth(
+    db.getSiblingDB("admin").auth(
       process.env.MONGO_INITDB_ROOT_USERNAME,
       process.env.MONGO_INITDB_ROOT_PASSWORD
     );
