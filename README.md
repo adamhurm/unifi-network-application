@@ -1,3 +1,12 @@
+
+# Hey! Archival Notice here
+
+I (adamhurm) am no longer maintaing this repo, so it's being archived. If someone else is using this repo for some reason, please check for security issues before using in production.
+
+[Ubiquiti has also published UnifiOS](https://blog.ui.com/article/introducing-unifi-os-server) that can be self-hosted if you want to use your own hardware! Or, you can still use Unifi Network Application.
+
+---
+
 # unifi-network-application
 
 ![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 8.1.127-ls42](https://img.shields.io/badge/AppVersion-8.1.127--ls42-informational?style=flat-square)
